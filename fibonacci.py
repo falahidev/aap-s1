@@ -1,24 +1,12 @@
 import math
 
 t = int(input())
-numbers = []
+nums = [int(input()) for _ in range(t)]
 
-for i in range(t):
-    numbers.append(int(input()))
+is_fib = lambda n: "YES" if n >= 0 and (
+    (s := 5*n*n) and
+    (math.isqrt(s+4)**2 == s+4 or
+     math.isqrt(s-4)**2 == s-4)
+) else "NO"
 
-def is_perfect_square(n):
-    return int(math.sqrt(n)) * int(math.sqrt(n)) == n
-
-def is_fibonacci(n):
-    if n < 0:
-        return "NO"
-
-    first_case = 5 * (n * n) + 4
-    second_case = 5 * (n * n) - 4
-
-    return "YES" if is_perfect_square(first_case) or is_perfect_square(second_case) else "NO"
-
-for n in numbers:
-    print(is_fibonacci(n))
-
-
+print(*map(is_fib, nums), sep='\n')
